@@ -20,7 +20,7 @@ const DUMMY_MEETUPS = [
 function HomePage() {
   const [loadedMeetups,setLoadedMeetups] = useState([]);
   
-  useEffect(()=>{
+  useEffect(()=>{ 
     // http request
     setLoadedMeetups(DUMMY_MEETUPS)
   },[])
