@@ -2,21 +2,26 @@ import { MongoClient } from "mongodb";
 
 
 async function handler(req,res){
-  if (req.method === 'POST'){
+  // console.log(req.body);
+  if (req.method === 'POST') {
     const data = req.body;
-    const client = await MongoClient.connect('mongodb+srv://<tomate>:<tomate69>@react.1fwaoej.mongodb.net/meetups?retryWrites=true&w=majority');
-    
+    console.log("iniciando conexao");
+    const client = await MongoClient.connect(
+      'mongodb+srv://wsl:wsl@react.1fwaoej.mongodb.net/meetups?retryWrites=true&w=majority'
+      );
+    console.log("iniciando conexao");
+
     const db = client.db();
 
     const meetupsCollection = db.collection('meetups');
-    
+
     const result = await meetupsCollection.insertOne(data);
-    
-    console.log(result)
-  
+
+    console.log(result);
+
     client.close();
 
-    res.status(201).json({message: 'meetup inserido com sucesso'})
+    res.status(201).json({ message: 'Meetup inserted!' });
   }
 }
 
